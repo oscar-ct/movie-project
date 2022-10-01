@@ -1,35 +1,42 @@
-const glitchJSON = 'https://bow-muddy-polyanthus.glitch.me/movies'
-const thisIsATest = '0011011000110110001100100011000100110100011001010110001000111001'
-const mapMovieSearchToDiv = (movie) => `<div onclick="getMovie('${movie.Id}')">
+const glitchJSON = 'https://bow-muddy-polyanthus.glitch.me/movies';
+const thisIsATest = '0011011000110110001100100011000100110100011001010110001000111001';
+const mapTitleSearchToDiv = (movie) => `<div onclick="getTitle('${movie.imdbID}')">
             <div>${movie.Title}</div>
+            <div>${movie.Year}</div>
             <div><img src="${movie.Poster}"></div>
-            </div>
-            <div><button type="button">add to favorites</button></div>`;
+        </div>`;
+const mapGlitchTitlesToDiv = (movie) => `<div>
+                <div><img src="${movie.Poster}"></div>
+                <div>${movie.Title}</div>
+                <div>Year: ${movie.Year}</div>
+                <div>Rating: ${movie.Rating}</div>
+                <div>Year: ${movie.Year}</div>
+                <div>Genre: ${movie.Genre}</div>
+                <div>Director: ${movie.Director}</div>
+                <div>Actors: ${movie.Actors}</div>
+                <div>Plot: ${movie.Plot}</div>
+            </div>`;
 
 
+document.querySelector('#searchTitleBtn').addEventListener('click', function () {
+    const titleSearched = document.querySelector('#searchTitleInput').value;
+    getSearchTitle(titleSearched);
 
-function getSearchMovies (search) {
+});
+
+function getSearchTitle (search) {
     fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&s" + "=" + search, {
     }).then(resp => resp.json()).then(function (data) {
-        const moviesData = data.Search.map(function(movie) {
-            return {
-                Title: movie.Title,
-                Poster: movie.Poster,
-                Id: movie.imdbID,
-                Year: movie.Year
-            };
-        });
-        document.querySelector('#output').innerHTML = moviesData.map(mapMovieSearchToDiv);
-        console.log(moviesData);
-        // console.log(data.Search);
+        document.querySelector('#output').innerHTML = data.Search.map(mapTitleSearchToDiv).join('');
+        console.log(data.Search.map(mapTitleSearchToDiv));
     });
 }
 
 
-function getMovie (IdTitle) {
+function getTitle (IdTitle) {
     fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&i" + "=" + IdTitle, {
     }).then(resp => resp.json()).then(function (movie) {
-        const movieData = `<div>
+        document.querySelector('#output').innerHTML = `<div>
                 <div><img src="${movie.Poster}"></div>
                 <div>${movie.Title}</div>
                 <div>Year: ${movie.Year}</div>
@@ -41,11 +48,19 @@ function getMovie (IdTitle) {
                 <div>Plot: ${movie.Plot}</div>
                 <div><button type="button">add to favorites</button></div>
             </div>`;
-        document.querySelector('#output').innerHTML = movieData;
     });
 
 }
 
+document.querySelector('#favorites').addEventListener('click', function () {
+   getGlitchTitles();
+});
+function getGlitchTitles () {
+    fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
+        document.querySelector('#output').innerHTML = data.map(mapGlitchTitlesToDiv).join('');
+        console.log(data)
+    });
+}
 
 
 
