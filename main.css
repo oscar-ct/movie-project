@@ -1,16 +1,16 @@
 
-/*html, body*/
-/*{*/
-/*    margin: 0px;*/
-/*}*/
+html, body
+{
+    margin: 0px;
+}
 
 
 div.container {
     color: black;
     font-family: 'Raleway', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     margin: 0 auto;
-    padding: 3em 3em;
+    padding: 3em 3em 2em 3em;
     text-align: center;
 
 }
@@ -62,9 +62,74 @@ div.topBottomBordersIn a:hover:before, div.topBottomBordersIn a:hover:after  {
 .searchTitles {
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 #output {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+}
+.date {
+    text-align: center;
+}
+.content-to-hide {
+    display: none;
+}
+.img-sm {
+    height: 350px;
+    width: 250px;
+}
+
+.movie-card {
+    max-width: 255px;
+    margin: .5em;
+    transition: all .2s ease-in-out;
+}
+.movie-card:hover{
+    transform: scale(1.08);
+    z-index: +1;
+}
+
+.img-lg {
+    height: 450px;
+    width: 350px;
+}
+.img-lg-container {
+    display: flex;
+}
+
+.movie-card-lg {
+    max-width: 1200px;
+}
+.movie-details {
+    margin-left: 50px;
+}
+.movie-card-lg div {
+    font-family: "Helvetica Neue";
+    padding: 10px;
+    font-size: 18px;
+}
+.title {
+    font-size: 30px!important;
+    text-align: center;
+    padding-top: 0!important;
+}
+.category {
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 45em){
+    .img-lg-container {
+        display: revert;
+    }
+    .movie-details {
+        margin-left: 0;
+    }
+    .img-lg-container2 {
+        display: flex;
+        justify-content: center;
+    }
+    
 }
