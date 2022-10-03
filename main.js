@@ -142,7 +142,7 @@ function getGlitchTitle (id) {
 //////////////////////////////////////////  Helpers  ////////////////////////////////////////////////////////
 
 function scrollToTop () {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 225);
 }
 
 const money = (test) => {

@@ -161,6 +161,9 @@ html, body
     .search {
         width: 100%;
     }
+    body {
+        min-height: 80em;
+    }
 }
 
 
