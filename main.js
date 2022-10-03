@@ -10,8 +10,10 @@ const mapTitleSearchToDiv = (movie) => `<div onclick="getTitle('${movie.imdbID}'
 document.querySelector('.searchButton').addEventListener('click', function () {
     const titleSearched = document.querySelector('.searchTerm').value;
     getSearchTitle(titleSearched);
-
 });
+
+
+
 $(document).on('keypress',function(e) {
     if(e.which === 13) {
         const titleSearched = document.querySelector('.searchTerm').value;
@@ -23,7 +25,7 @@ function getSearchTitle (search) {
     }).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.Search.map(mapTitleSearchToDiv).join('');
         console.log(data.Search);
-    });
+    }).then(addSearchResultsLink).catch(searchUndefined);
 }
 function getTitle (IdTitle) {
     fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&i" + "=" + IdTitle + '&plot=full', {
@@ -43,6 +45,7 @@ function getTitle (IdTitle) {
                     </div>
                 </div>
             </div>`;
+        addBackButtonFromOMBd();
     }).then(scrollToTop);
 
 }
@@ -106,6 +109,7 @@ const mapGlitchTitlesToDiv = (movie) => `<div onclick="getGlitchTitle(${movie.id
             </div>`;
 document.querySelector('#favorites').addEventListener('click', function () {
    getGlitchTitles();
+   addCommunityFavoritesLink();
 });
 function getGlitchTitles () {
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
@@ -135,14 +139,41 @@ function getGlitchTitle (id) {
                     </div>
                 </div>
             </div>`;
+        addBackButtonFromGlitch();
     }).then(scrollToTop);
 
 }
 
 //////////////////////////////////////////  Helpers  ////////////////////////////////////////////////////////
-
+function searchUndefined () {
+    alert('No results found, please be more specific.')
+}
 function scrollToTop () {
-    window.scrollTo(0, 225);
+    window.scrollTo(0, 0);
+}
+function addBackButtonFromGlitch () {
+    document.querySelector('#back-container').innerHTML = `<div class="back" id="back-glitch" onclick="backButtonGlitch()">&lt;&lt;back</div>`
+}
+function backButtonGlitch () {
+    getGlitchTitles()
+    addCommunityFavoritesLink();
+}
+
+
+function addBackButtonFromOMBd () {
+    document.querySelector('#back-container').innerHTML = `<div class="back" id="back-ombd" onclick="backButtonOMBd()">&lt;&lt;back</div>`
+}
+function backButtonOMBd () {
+        const titleSearched = document.querySelector('.searchTerm').value;
+        getSearchTitle(titleSearched);
+        addSearchResultsLink()
+}
+
+function addCommunityFavoritesLink () {
+    document.querySelector('#back-container').innerHTML = ''
+}
+function addSearchResultsLink () {
+    document.querySelector('#back-container').innerHTML = '<div class="search-results">(search results)</div>'
 }
 
 const money = (test) => {
