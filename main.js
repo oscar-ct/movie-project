@@ -12,6 +12,12 @@ document.querySelector('.searchButton').addEventListener('click', function () {
     getSearchTitle(titleSearched);
 
 });
+$(document).on('keypress',function(e) {
+    if(e.which === 13) {
+        const titleSearched = document.querySelector('.searchTerm').value;
+        getSearchTitle(titleSearched);
+    }
+});
 function getSearchTitle (search) {
     fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&s" + "=" + search, {
     }).then(resp => resp.json()).then(function (data) {
@@ -37,7 +43,8 @@ function getTitle (IdTitle) {
                     </div>
                 </div>
             </div>`;
-    });
+    }).then(scrollToTop);
+
 }
 
 function addToFavorites (IdTitle) {
@@ -102,7 +109,7 @@ document.querySelector('#favorites').addEventListener('click', function () {
 });
 function getGlitchTitles () {
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
-        document.querySelector('#output').innerHTML = data.map(mapGlitchTitlesToDiv).join('');
+        document.querySelector('#output').innerHTML = data.reverse().map(mapGlitchTitlesToDiv).join('');
         console.log(data)
     });
 }
@@ -128,12 +135,15 @@ function getGlitchTitle (id) {
                     </div>
                 </div>
             </div>`;
-    });
+    }).then(scrollToTop);
+
 }
 
 //////////////////////////////////////////  Helpers  ////////////////////////////////////////////////////////
 
-
+function scrollToTop () {
+    window.scrollTo(0, 0);
+}
 
 const money = (test) => {
     let message = "";
