@@ -18,7 +18,7 @@ nav {
     mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
     margin: 0 auto;
     padding: 0;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 #favorites {
 
@@ -30,7 +30,7 @@ nav ul {
     text-align: center;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
-    border-radius: 20px;
+    border-radius: 10px;
     border: solid #1e1d1d;
 }
 
@@ -320,6 +320,15 @@ html, body
     .search-results {
         text-align: center;
         transform: translateY(0px) translateX(0px);
+    }
+    .movie-card {
+        max-width: 255px;
+        margin: .5em;
+        transition: none;
+    }
+    .movie-card:hover{
+        transform: none;
+        z-index: 0;
     }
 
     
