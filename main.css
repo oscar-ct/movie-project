@@ -20,6 +20,9 @@ nav {
     padding: 0;
     border-radius: 10px;
 }
+#favorites {
+
+}
 
 nav ul {
     margin: 0;
@@ -325,6 +328,7 @@ html, body
 @media screen and (max-width: 34em) {
     #favorites {
         width: 305px !important;
+        border-bottom: solid 1px grey;
     }
     .search {
         width: 100%;
