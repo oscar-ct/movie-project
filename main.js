@@ -7,8 +7,8 @@ const mapTitleSearchToDiv = (movie) => `<div onclick="getTitle('${movie.imdbID}'
             <div><img class="img-sm" src="${movie.Poster}"></div>
             <div class="date">${movie.Year}</div>
         </div>`;
-document.querySelector('#searchTitleBtn').addEventListener('click', function () {
-    const titleSearched = document.querySelector('#searchTitleInput').value;
+document.querySelector('.searchButton').addEventListener('click', function () {
+    const titleSearched = document.querySelector('.searchTerm').value;
     getSearchTitle(titleSearched);
 
 });
@@ -46,7 +46,7 @@ function getTitle (IdTitle) {
 const glitchJSON = 'https://bow-muddy-polyanthus.glitch.me/movies';
 const mapGlitchTitlesToDiv = (movie) => `<div onclick="getGlitchTitle('${movie.imdbID}')" class="movie-card" ">
                 <div><img class="img-sm" src="${movie.Poster}"></div>
-                <div style="text-align: center">${movie.Year}</div>
+                <div class="date" ">${movie.Year}</div>
             </div>`;
 document.querySelector('#favorites').addEventListener('click', function () {
    getGlitchTitles();
@@ -57,6 +57,7 @@ function getGlitchTitles () {
         console.log(data)
     });
 }
+getGlitchTitles()
 function getGlitchTitle (id) {
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
         const result = data.find(obj => {
