@@ -41,8 +41,9 @@ nav ul li {
 
 nav ul li a {
     padding: 40px;
-    font-family: 'Inter Tight', sans-serif;
-    /*text-transform:uppercase;*/
+    /*font-family: 'Inter Tight', sans-serif;*/
+    font-family: 'Raleway', sans-serif;
+    text-transform:uppercase;
     /*color: black;*/
     /*color: white;*/
     font-size: 18px;
