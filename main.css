@@ -5,8 +5,9 @@
     height: 75px;
 }
 .fa-regular {
-    padding-left: 5px;
+    padding-right: 10px;
     color: gold;
+    font-size: 21px;
 }
 .nav-text {
     color: white;
@@ -58,13 +59,6 @@ html, body
 }
 
 
-.searchTitles {
-    margin: 2em 0 1.5em 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 
 #output {
     display: flex;
@@ -98,7 +92,7 @@ html, body
 
 .img-lg {
     height: 450px;
-    width: 350px;
+    width: 300px;
     border-radius: 5px;
 }
 .img-lg-container {
@@ -110,12 +104,13 @@ html, body
 }
 .movie-details {
     margin-left: 50px;
+    font-weight: lighter;
     color: white;
 }
 .movie-card-lg div {
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     padding: 10px;
-    font-size: 18px;
+    font-size: 16px;
 }
 .title {
     font-size: 30px!important;
@@ -141,13 +136,34 @@ html, body
     .img {
         display: none;
     }
+    nav ul li a {
+        padding: 30px 20px 20px 20px;
+        font-size: 16px;
+    }
+    .img-lg {
+        height: 350px;
+        width: 250px;
+        border-radius: 5px;
+    }
+    .btn-container {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center!important;
+    }
+
     
 }
 
 
+.searchTitles {
+    margin: 2em 0 1.5em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .search {
-    width: 100%;
+    width: 300px;
     position: relative;
     display: flex;
 }
@@ -195,7 +211,11 @@ html, body
 
 /*<!-- HTML !-->*/
 /*<button class="button-13" role="button">Button 13</button>*/
-
+.btn-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: start;
+}
 .button-13 {
     background-color: #fff;
     /*background-color: green;*/

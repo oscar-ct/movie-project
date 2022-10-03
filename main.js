@@ -20,7 +20,7 @@ function getSearchTitle (search) {
     });
 }
 function getTitle (IdTitle) {
-    fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&i" + "=" + IdTitle, {
+    fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&i" + "=" + IdTitle + '&plot=full', {
     }).then(resp => resp.json()).then(function (movie) {
         document.querySelector('#output').innerHTML = `<div class="movie-card-lg">
                 <div class="img-lg-container">
@@ -33,7 +33,7 @@ function getTitle (IdTitle) {
                         <div><span class="category">Director:</span>${movie.Director}</div>
                         <div><span class="category">Actors:</span>${movie.Actors}</div>
                         <div><span class="category">Plot:</span>${movie.Plot}</div>
-                        <div><button class="button-13" id="addToFavorites" type="button" onclick="addToFavorites('${movie.imdbID}')">Add To Community Favorites</button></div>
+                        <div class="btn-container"><button class="button-13" id="addToFavorites" type="button" onclick="addToFavorites('${movie.imdbID}')">Add To Community Favorites</button></div>
                     </div>
                 </div>
             </div>`;
@@ -41,7 +41,7 @@ function getTitle (IdTitle) {
 }
 
 function addToFavorites (IdTitle) {
-    fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&i" + "=" + IdTitle, {
+    fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&i" + "=" + IdTitle + '&plot=full', {
     }).then(resp => resp.json()).then(function (movie) {
         const movieToPost = {
             Title: movie.Title,
@@ -93,7 +93,7 @@ function removeFromFavorites (id) {
 //////////////////////////////////////////  Glitch  ////////////////////////////////////////////////////////
 
 const glitchJSON = 'https://bow-muddy-polyanthus.glitch.me/movies';
-const mapGlitchTitlesToDiv = (movie) => `<div onclick="getGlitchTitle('${movie.imdbID}')" class="movie-card" ">
+const mapGlitchTitlesToDiv = (movie) => `<div onclick="getGlitchTitle(${movie.id})" class="movie-card" ">
                 <div><img class="img-sm" src="${movie.Poster}"></div>
                 <div class="date" ">${movie.Year}</div>
             </div>`;
@@ -106,11 +106,11 @@ function getGlitchTitles () {
         console.log(data)
     });
 }
-getGlitchTitles()
+getGlitchTitles();
 function getGlitchTitle (id) {
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
         const result = data.find(obj => {
-            return obj.imdbID === id;
+            return obj.id === id;
         });
         console.log(result);
         document.querySelector('#output').innerHTML = `<div class="movie-card-lg">
@@ -124,7 +124,7 @@ function getGlitchTitle (id) {
                         <div><span class="category">Director:</span>${result.Director}</div>
                         <div><span class="category">Actors:</span>${result.Actors}</div>
                         <div><span class="category">Plot:</span>${result.Plot}</div>
-                        <div><button id="removeFromFavorites" class="button-13" type="button" onclick="removeFromFavorites(${result.id})">Remove From Community Favorites</button></div>
+                        <div class="btn-container"><button id="removeFromFavorites" class="button-13" type="button" onclick="removeFromFavorites(${result.id})">Remove From Community Favorites</button></div>
                     </div>
                 </div>
             </div>`;
