@@ -1,11 +1,12 @@
 
 
 document.querySelector('#contact').addEventListener('click', function () {
+    document.querySelector('#back-container').innerHTML = '';
 let contact = `<div>
     <div class="contact text-color" style="color: ${setTextColors()}"><h3>Thank you for visiting my site, please feel free to reach out to me if you have any questions.</h3></div>
     <div class="contact text-color" style="color: ${setTextColors()}"><h3>Email: oscar.a.castro818@gmail.com</h3></div>
     <div class="contact text-color" style="color: ${setTextColors()}"><h3>Github: https://github.com/oscar-ct</h3></div>
-    </div>`
+    </div>`;
    document.querySelector('#output').innerHTML = contact;
 });
 
@@ -136,7 +137,7 @@ function getGlitchTitles () {
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.reverse().map(mapGlitchTitlesToDiv).join('');
         console.log(data)
-    }).then(scrollToTop);
+    }).then(scrollToTop).then(favoritesLink);
 }
 getGlitchTitles();
 function getGlitchTitle (id) {
@@ -161,7 +162,7 @@ function getGlitchTitle (id) {
                 </div>
             </div>`;
         addBackButtonFromGlitch();
-    }).then(scrollToTop)
+    }).then(scrollToTop);
 
 }
 
@@ -206,29 +207,32 @@ function scrollToTop () {
     window.scrollTo(0, 0);
 }
 function addBackButtonFromGlitch () {
-    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="back text-color" id="back-glitch" onclick="backButtonGlitch()">&lt;&lt;back</div>`
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="back text-color" id="back-glitch" onclick="backButtonGlitch()">&lt;&lt;back</div>`;
 }
 function backButtonGlitch () {
-    getGlitchTitles()
+    getGlitchTitles();
     addCommunityFavoritesLink();
 }
 
 
 function addBackButtonFromOMBd () {
-    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="back text-color" id="back-ombd" onclick="backButtonOMBd()">&lt;&lt;back</div>`
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="back text-color" id="back-ombd" onclick="backButtonOMBd()">&lt;&lt;back</div>`;
 }
 function backButtonOMBd () {
         const titleSearched = document.querySelector('.searchTerm').value;
         getSearchTitle(titleSearched);
-        addSearchResultsLink()
+        addSearchResultsLink();
 }
 
 function addSearchResultsLink () {
-    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="search-results text-color">(search results)</div>`
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="search-results text-color">(search results)</div>`;
+}
+function favoritesLink () {
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="search-results text-color">Favorites</div>`;
 }
 
 function addCommunityFavoritesLink () {
-    document.querySelector('#back-container').innerHTML = ''
+    document.querySelector('#back-container').innerHTML = '';
 }
 
 
