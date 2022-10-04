@@ -1,13 +1,13 @@
 * {
 
 }
-#mode {
-    inline-size: 110px;
-    overflow-wrap: break-word;
-    transform: translateY(20px) translateX(0px);
-    padding-bottom: 20px;
-
-}
+/*#mode {*/
+/*    inline-size: 110px;*/
+/*    overflow-wrap: break-word;*/
+/*    transform: translateY(20px) translateX(0px);*/
+/*    padding-bottom: 20px;*/
+/*    height: 42px;*/
+/*}*/
 .img {
     transform: translateY(20px) translateX(-100px);
     padding: 0;
@@ -315,7 +315,6 @@ html, body
     nav ul li a:hover {
         box-shadow: none!important;
         background: none!important;
-        color: white;
     }
     .searchTitles {
         margin-bottom: 20px;
@@ -356,6 +355,9 @@ html, body
     }
     body {
         min-height: 80em;
+    }
+    .mobile-nav {
+
     }
 }
 
