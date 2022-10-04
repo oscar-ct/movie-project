@@ -25,7 +25,8 @@ function getSearchTitle (search) {
     }).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.Search.map(mapTitleSearchToDiv).join('');
         console.log(data.Search);
-    }).then(addSearchResultsLink).catch(searchUndefined);
+    }).then(addSearchResultsLink).then(scrollToTop).catch(searchUndefined);
+
 }
 function getTitle (IdTitle) {
     fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&i" + "=" + IdTitle + '&plot=full', {
@@ -115,7 +116,7 @@ function getGlitchTitles () {
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.reverse().map(mapGlitchTitlesToDiv).join('');
         console.log(data)
-    });
+    }).then(scrollToTop);
 }
 getGlitchTitles();
 function getGlitchTitle (id) {
