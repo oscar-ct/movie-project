@@ -5,7 +5,7 @@
 const thisIsATest = '0011011000110110001100100011000100110100011001010110001000111001';
 const mapTitleSearchToDiv = (movie) => `<div onclick="getTitle('${movie.imdbID}')" class="movie-card">
             <div><img class="img-sm" src="${movie.Poster}"></div>
-            <div class="date">${movie.Year}</div>
+            <div class="text-color date">${movie.Year}</div>
         </div>`;
 document.querySelector('.searchButton').addEventListener('click', function () {
     const titleSearched = document.querySelector('.searchTerm').value;
@@ -33,7 +33,7 @@ function getTitle (IdTitle) {
         document.querySelector('#output').innerHTML = `<div class="movie-card-lg">
                 <div class="img-lg-container">
                     <div class="img-lg-container2"><img class="img-lg" src="${movie.Poster}"></div>
-                    <div class="movie-details">
+                    <div class="movie-details text-color">
                         <div class="title">${movie.Title}</div>
                         <div><span class="category">Year Released:</span>${movie.Year}</div>
                         <div><span class="category">IMDb Rating:</span>${movie.Ratings[0].Value}</div>
@@ -41,7 +41,7 @@ function getTitle (IdTitle) {
                         <div><span class="category">Director:</span>${movie.Director}</div>
                         <div><span class="category">Actors:</span>${movie.Actors}</div>
                         <div><span class="category">Plot:</span>${movie.Plot}</div>
-                        <div class="btn-container"><button class="button-13" id="addToFavorites" type="button" onclick="addToFavorites('${movie.imdbID}')">Add To Community Favorites</button></div>
+                        <div class="btn-container"><button class="button-13" id="addToFavorites" type="button" onclick="addToFavorites('${movie.imdbID}')">Add To Favorites</button></div>
                     </div>
                 </div>
             </div>`;
@@ -105,7 +105,7 @@ function removeFromFavorites (id) {
 const glitchJSON = 'https://bow-muddy-polyanthus.glitch.me/movies';
 const mapGlitchTitlesToDiv = (movie) => `<div onclick="getGlitchTitle(${movie.id})" class="movie-card" ">
                 <div><img class="img-sm" src="${movie.Poster}"></div>
-                <div class="date" ">${movie.Year}</div>
+                <div class="text-color date" ">${movie.Year}</div>
             </div>`;
 document.querySelector('#favorites').addEventListener('click', function () {
    getGlitchTitles();
@@ -127,7 +127,7 @@ function getGlitchTitle (id) {
         document.querySelector('#output').innerHTML = `<div class="movie-card-lg">
                 <div class="img-lg-container">
                     <div class="img-lg-container2"><img class="img-lg" src="${result.Poster}"></div>
-                    <div class="movie-details">
+                    <div class="movie-details text-color">
                         <div class="title">${result.Title}</div>
                         <div><span class="category">Year Released:</span>${result.Year}</div>
                         <div><span class="category">IMDb Rating:</span>${result.Rating}</div>
@@ -135,24 +135,63 @@ function getGlitchTitle (id) {
                         <div><span class="category">Director:</span>${result.Director}</div>
                         <div><span class="category">Actors:</span>${result.Actors}</div>
                         <div><span class="category">Plot:</span>${result.Plot}</div>
-                        <div class="btn-container"><button id="removeFromFavorites" class="button-13" type="button" onclick="removeFromFavorites(${result.id})">Remove From Community Favorites</button></div>
+                        <div class="btn-container"><button id="removeFromFavorites" class="button-13" type="button" onclick="removeFromFavorites(${result.id})">Remove From Favorites</button></div>
                     </div>
                 </div>
             </div>`;
         addBackButtonFromGlitch();
-    }).then(scrollToTop);
+    }).then(scrollToTop)
 
 }
 
 //////////////////////////////////////////  Helpers  ////////////////////////////////////////////////////////
+function setColor (element, color) {
+    for (let i = 0; i < element.length; i++) {
+        element[i].style.color = color;
+    }
+}
+function getColor (element) {
+    let colors = [];
+    for (let i = 0; i < element.length; i++) {
+        colors.push(element[i].style.color);
+    }
+    return colors[0];
+}
+
+const textColorClass = document.getElementsByClassName('text-color');
+
+
+document.querySelector('#mode').addEventListener('click', function () {
+    const bodyBackgroundColor = document.querySelector('body').style.backgroundColor;
+    let body = document.querySelector('body');
+    let element = document.querySelector('#mode');
+    let span = `<span style="font-family: Arial,sans-serif; text-transform:lowercase; font-size: 12px; line-height: 10px; font-style: italic">(in testing)</span>`
+
+    if (bodyBackgroundColor === 'white') {
+        body.style.backgroundColor = 'rgb(31, 30, 30)';
+        setColor(textColorClass, 'white');
+        element.innerHTML = 'LIGHT MODE ' + span;
+    } else if (bodyBackgroundColor === 'rgb(31, 30, 30)') {
+        body.style.backgroundColor = 'white';
+        setColor(textColorClass, 'black');
+        element.innerHTML = 'DARK MODE ' + span;
+    }
+
+});
+
+
+
+
+
+
 function searchUndefined () {
-    alert('No results found, please be more specific.')
+    alert('No results found, please be more specific.');
 }
 function scrollToTop () {
     window.scrollTo(0, 0);
 }
 function addBackButtonFromGlitch () {
-    document.querySelector('#back-container').innerHTML = `<div class="back" id="back-glitch" onclick="backButtonGlitch()">&lt;&lt;back</div>`
+    document.querySelector('#back-container').innerHTML = `<div class="back text-color" id="back-glitch" onclick="backButtonGlitch()">&lt;&lt;back</div>`
 }
 function backButtonGlitch () {
     getGlitchTitles()
@@ -161,7 +200,7 @@ function backButtonGlitch () {
 
 
 function addBackButtonFromOMBd () {
-    document.querySelector('#back-container').innerHTML = `<div class="back" id="back-ombd" onclick="backButtonOMBd()">&lt;&lt;back</div>`
+    document.querySelector('#back-container').innerHTML = `<div class="back text-color" id="back-ombd" onclick="backButtonOMBd()">&lt;&lt;back</div>`
 }
 function backButtonOMBd () {
         const titleSearched = document.querySelector('.searchTerm').value;
@@ -192,3 +231,5 @@ const money = (test) => {
     }
     return message;
 }
+
+
