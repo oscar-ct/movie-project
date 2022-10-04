@@ -183,14 +183,24 @@ document.querySelector('#mode').addEventListener('click', function () {
     let element = document.querySelector('#mode');
     // let span = `<span style="font-family: Arial,sans-serif; text-transform:lowercase; font-size: 12px; line-height: 10px; font-style: italic">(in testing)</span>`
 
-    if (bodyBackgroundColor === 'white') {
+    // if (bodyBackgroundColor === 'white') {
+    //     body.style.backgroundColor = 'rgb(31, 30, 30)';
+    //     setColor(textColorClass, 'white');
+    //     element.innerHTML = 'LIGHT MODE';
+    // } else if (bodyBackgroundColor === 'rgb(31, 30, 30)') {
+    //     body.style.backgroundColor = 'white';
+    //     setColor(textColorClass, 'black');
+    //     element.innerHTML = 'DARK MODE';
+    // }
+    console.log(element);
+    if (element.innerText === 'DARK MODE') {
         body.style.backgroundColor = 'rgb(31, 30, 30)';
         setColor(textColorClass, 'white');
-        element.innerHTML = 'LIGHT MODE';
-    } else if (bodyBackgroundColor === 'rgb(31, 30, 30)') {
+        element.innerText = 'LIGHT MODE';
+    } else if (element.innerText === 'LIGHT MODE') {
         body.style.backgroundColor = 'white';
         setColor(textColorClass, 'black');
-        element.innerHTML = 'DARK MODE';
+        element.innerText = 'DARK MODE';
     }
 
 });
