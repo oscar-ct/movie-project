@@ -1,4 +1,12 @@
+let contact = `<div>
+<div class="contact text-color"><h3>Thank you for visiting my site, please feel free to reach out to me if you have any questions.</h3></div>
+<div class="contact text-color"><h3>Email: oscar.a.castro818@gmail.com</h3></div>
+<div class="contact text-color"><h3>Github: https://github.com/oscar-ct</h3></div>
+</div>`
 
+document.querySelector('#contact').addEventListener('click', function () {
+   document.querySelector('#output').innerHTML = contact;
+});
 
 //////////////////////////////////////////  OMDb  ////////////////////////////////////////////////////////
 
