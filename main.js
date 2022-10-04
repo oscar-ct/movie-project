@@ -1,19 +1,31 @@
-let contact = `<div>
-<div class="contact text-color"><h3>Thank you for visiting my site, please feel free to reach out to me if you have any questions.</h3></div>
-<div class="contact text-color"><h3>Email: oscar.a.castro818@gmail.com</h3></div>
-<div class="contact text-color"><h3>Github: https://github.com/oscar-ct</h3></div>
-</div>`
+
 
 document.querySelector('#contact').addEventListener('click', function () {
+let contact = `<div>
+    <div class="contact text-color" style="color: ${setTextColors()}"><h3>Thank you for visiting my site, please feel free to reach out to me if you have any questions.</h3></div>
+    <div class="contact text-color" style="color: ${setTextColors()}"><h3>Email: oscar.a.castro818@gmail.com</h3></div>
+    <div class="contact text-color" style="color: ${setTextColors()}"><h3>Github: https://github.com/oscar-ct</h3></div>
+    </div>`
    document.querySelector('#output').innerHTML = contact;
 });
 
+function setTextColors () {
+    const bgColor = document.querySelector('body').style.backgroundColor;
+    if (bgColor === 'white') {
+        console.log('black')
+        return 'black';
+    } else if (bgColor === 'rgb(31, 30, 30)') {
+        console.log('white');
+        return 'white';
+    }
+
+}
 //////////////////////////////////////////  OMDb  ////////////////////////////////////////////////////////
 
 const thisIsATest = '0011011000110110001100100011000100110100011001010110001000111001';
 const mapTitleSearchToDiv = (movie) => `<div onclick="getTitle('${movie.imdbID}')" class="movie-card">
             <div><img class="img-sm" src="${movie.Poster}"></div>
-            <div class="text-color date">${movie.Year}</div>
+            <div class="text-color date" style="color: ${setTextColors()}">${movie.Year}</div>
         </div>`;
 document.querySelector('.searchButton').addEventListener('click', function () {
     const titleSearched = document.querySelector('.searchTerm').value;
@@ -42,7 +54,7 @@ function getTitle (IdTitle) {
         document.querySelector('#output').innerHTML = `<div class="movie-card-lg">
                 <div class="img-lg-container">
                     <div class="img-lg-container2"><img class="img-lg" src="${movie.Poster}"></div>
-                    <div class="movie-details text-color">
+                    <div class="movie-details text-color" style="color: ${setTextColors()}">
                         <div class="title">${movie.Title}</div>
                         <div><span class="category">Year Released:</span>${movie.Year}</div>
                         <div><span class="category">IMDb Rating:</span>${movie.Ratings[0].Value}</div>
@@ -114,7 +126,7 @@ function removeFromFavorites (id) {
 const glitchJSON = 'https://bow-muddy-polyanthus.glitch.me/movies';
 const mapGlitchTitlesToDiv = (movie) => `<div onclick="getGlitchTitle(${movie.id})" class="movie-card" ">
                 <div><img class="img-sm" src="${movie.Poster}"></div>
-                <div class="text-color date" ">${movie.Year}</div>
+                <div class="text-color date" style="color: ${setTextColors()}">${movie.Year}</div>
             </div>`;
 document.querySelector('#favorites').addEventListener('click', function () {
    getGlitchTitles();
@@ -136,9 +148,9 @@ function getGlitchTitle (id) {
         document.querySelector('#output').innerHTML = `<div class="movie-card-lg">
                 <div class="img-lg-container">
                     <div class="img-lg-container2"><img class="img-lg" src="${result.Poster}"></div>
-                    <div class="movie-details text-color">
+                    <div class="movie-details text-color" style="color: ${setTextColors()}">
                         <div class="title">${result.Title}</div>
-                        <div><span class="category">Year Released:</span>${result.Year}</div>
+                        <div><span class="category" >Year Released:</span>${result.Year}</div>
                         <div><span class="category">IMDb Rating:</span>${result.Rating}</div>
                         <div><span class="category">Genre:</span>${result.Genre}</div>
                         <div><span class="category">Director:</span>${result.Director}</div>
@@ -159,13 +171,7 @@ function setColor (element, color) {
         element[i].style.color = color;
     }
 }
-function getColor (element) {
-    let colors = [];
-    for (let i = 0; i < element.length; i++) {
-        colors.push(element[i].style.color);
-    }
-    return colors[0];
-}
+
 
 const textColorClass = document.getElementsByClassName('text-color');
 
@@ -174,16 +180,16 @@ document.querySelector('#mode').addEventListener('click', function () {
     const bodyBackgroundColor = document.querySelector('body').style.backgroundColor;
     let body = document.querySelector('body');
     let element = document.querySelector('#mode');
-    let span = `<span style="font-family: Arial,sans-serif; text-transform:lowercase; font-size: 12px; line-height: 10px; font-style: italic">(in testing)</span>`
+    // let span = `<span style="font-family: Arial,sans-serif; text-transform:lowercase; font-size: 12px; line-height: 10px; font-style: italic">(in testing)</span>`
 
     if (bodyBackgroundColor === 'white') {
         body.style.backgroundColor = 'rgb(31, 30, 30)';
         setColor(textColorClass, 'white');
-        element.innerHTML = 'LIGHT MODE ' + span;
+        element.innerHTML = 'LIGHT MODE';
     } else if (bodyBackgroundColor === 'rgb(31, 30, 30)') {
         body.style.backgroundColor = 'white';
         setColor(textColorClass, 'black');
-        element.innerHTML = 'DARK MODE ' + span;
+        element.innerHTML = 'DARK MODE';
     }
 
 });
@@ -200,7 +206,7 @@ function scrollToTop () {
     window.scrollTo(0, 0);
 }
 function addBackButtonFromGlitch () {
-    document.querySelector('#back-container').innerHTML = `<div class="back text-color" id="back-glitch" onclick="backButtonGlitch()">&lt;&lt;back</div>`
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="back text-color" id="back-glitch" onclick="backButtonGlitch()">&lt;&lt;back</div>`
 }
 function backButtonGlitch () {
     getGlitchTitles()
@@ -209,7 +215,7 @@ function backButtonGlitch () {
 
 
 function addBackButtonFromOMBd () {
-    document.querySelector('#back-container').innerHTML = `<div class="back text-color" id="back-ombd" onclick="backButtonOMBd()">&lt;&lt;back</div>`
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="back text-color" id="back-ombd" onclick="backButtonOMBd()">&lt;&lt;back</div>`
 }
 function backButtonOMBd () {
         const titleSearched = document.querySelector('.searchTerm').value;
@@ -217,12 +223,14 @@ function backButtonOMBd () {
         addSearchResultsLink()
 }
 
+function addSearchResultsLink () {
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="search-results text-color">(search results)</div>`
+}
+
 function addCommunityFavoritesLink () {
     document.querySelector('#back-container').innerHTML = ''
 }
-function addSearchResultsLink () {
-    document.querySelector('#back-container').innerHTML = '<div class="search-results">(search results)</div>'
-}
+
 
 const money = (test) => {
     let message = "";
