@@ -143,7 +143,13 @@ document.querySelector('#favorites').addEventListener('click', function () {
    getGlitchTitles();
    addCommunityFavoritesLink();
 });
+function loading () {
+    setTimeout(function () {
+        document.querySelector('#output').innerHTML = `<h1 id="loading">...one sec</h1>`;
+    }, 1000);
+}
 function getGlitchTitles () {
+    document.querySelector('#output').innerHTML = `<h1 id="loading">...one sec</h1>`;
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.reverse().map(mapGlitchTitlesToDiv).join('');
         console.log(data)
