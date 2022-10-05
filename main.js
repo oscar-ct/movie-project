@@ -1,6 +1,7 @@
 
 
 document.querySelector('#contact').addEventListener('click', function () {
+    setTitle('Flix');
     document.querySelector('#back-container').innerHTML = '';
 let contact = `<div>
     <div class="contact text-color" style="color: ${setTextColors()}"><h3>Thank you for visiting my site, please feel free to reach out to me if you have any questions.</h3></div>
@@ -20,6 +21,9 @@ function setTextColors () {
         return 'white';
     }
 
+}
+function setTitle (str) {
+    document.querySelector('#title').innerText = str;
 }
 //////////////////////////////////////////  OMDb  ////////////////////////////////////////////////////////
 
@@ -46,12 +50,16 @@ function getSearchTitle (search) {
     }).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.Search.map(mapTitleSearchToDiv).join('');
         console.log(data.Search);
-    }).then(addSearchResultsLink).then(scrollToTop).catch(searchUndefined);
+        addSearchResultsLink(data.Search.length);
+        setTitle('Flix');
+        scrollToTop();
+    }).catch(searchUndefined);
 
 }
 function getTitle (IdTitle) {
     fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&i" + "=" + IdTitle + '&plot=full', {
     }).then(resp => resp.json()).then(function (movie) {
+        console.log(movie);
         document.querySelector('#output').innerHTML = `<div class="movie-card-lg">
                 <div class="img-lg-container">
                     <div class="img-lg-container2"><img class="img-lg" src="${movie.Poster}"></div>
@@ -68,7 +76,9 @@ function getTitle (IdTitle) {
                 </div>
             </div>`;
         addBackButtonFromOMBd();
-    }).then(scrollToTop);
+        setTitle(`${movie.Title}` + ' | Flix');
+        scrollToTop();
+    });
 
 }
 
@@ -137,7 +147,11 @@ function getGlitchTitles () {
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.reverse().map(mapGlitchTitlesToDiv).join('');
         console.log(data)
-    }).then(scrollToTop).then(favoritesLink);
+        setTitle('Flix');
+        const arraySize = data.length;
+        favoritesLink(arraySize);
+        scrollToTop();
+    });
 }
 getGlitchTitles();
 function getGlitchTitle (id) {
@@ -161,8 +175,10 @@ function getGlitchTitle (id) {
                     </div>
                 </div>
             </div>`;
+        setTitle(`${result.Title}` + ' | Flix');
         addBackButtonFromGlitch();
-    }).then(scrollToTop);
+        scrollToTop();
+    });
 
 }
 
@@ -234,11 +250,11 @@ function backButtonOMBd () {
         addSearchResultsLink();
 }
 
-function addSearchResultsLink () {
-    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="search-results text-color">(search results)</div>`;
+function addSearchResultsLink (num) {
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="search-results text-color">Search Results (${num})</div>`;
 }
-function favoritesLink () {
-    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="search-results text-color">Favorites</div>`;
+function favoritesLink (num) {
+    document.querySelector('#back-container').innerHTML = `<div style="color: ${setTextColors()}" class="search-results text-color">Favorites (${num})</div>`;
 }
 
 function addCommunityFavoritesLink () {
