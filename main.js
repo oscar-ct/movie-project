@@ -145,14 +145,16 @@ document.querySelector('#favorites').addEventListener('click', function () {
 });
 function loading () {
     setTimeout(function () {
+        const output =  document.querySelector('#output');
+        if (output.innerHTML === "")
         document.querySelector('#output').innerHTML = `<h1 id="loading">...one sec</h1>`;
-    }, 1000);
+    }, 500);
 }
 function getGlitchTitles () {
-    document.querySelector('#output').innerHTML = `<h1 id="loading">...one sec</h1>`;
+    loading();
     fetch(glitchJSON).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.reverse().map(mapGlitchTitlesToDiv).join('');
-        console.log(data)
+        console.log(data);
         setTitle('Flix');
         const arraySize = data.length;
         favoritesLink(arraySize);
