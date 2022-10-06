@@ -50,9 +50,9 @@ function getSearchTitle (search) {
     }).then(resp => resp.json()).then(function (data) {
         document.querySelector('#output').innerHTML = data.Search.map(mapTitleSearchToDiv).join('');
         console.log(data.Search);
-        addSearchResultsLink(data.Search.length);
         setTitle('Flix');
         scrollToTop();
+        addSearchResultsLink(data.Search.length);
     }).catch(searchUndefined);
 
 }
@@ -255,7 +255,6 @@ function addBackButtonFromOMBd () {
 function backButtonOMBd () {
         const titleSearched = document.querySelector('.searchTerm').value;
         getSearchTitle(titleSearched);
-        addSearchResultsLink();
 }
 
 function addSearchResultsLink (num) {
