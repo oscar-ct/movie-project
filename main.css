@@ -211,7 +211,7 @@ html, body
 }
 
 .searchButton {
-    width: 30px;
+    /*width: 30px;*/
     height: 36px;
     border: 1px solid lightgrey;
     background: lightgrey;
