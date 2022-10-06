@@ -218,7 +218,7 @@ html, body
     border: 3px solid lightgrey;
     border-right: none;
     padding: 5px;
-    /*height: 20px;*/
+    height: 20px;
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #2c2c2c;
