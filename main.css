@@ -240,7 +240,7 @@ html, body
 /*<!-- HTML !-->*/
 /*<button class="button-13" role="button">Button 13</button>*/
 .btn-container {
-    margin-top: 50px;
+    margin: 25px 0 25px 0;
     display: flex;
     justify-content: start;
 }
@@ -309,7 +309,7 @@ html, body
         border-radius: 5px;
     }
     .btn-container {
-        margin-top: 50px;
+        margin-top: 25px;
         display: flex;
         justify-content: center!important;
     }
@@ -360,7 +360,7 @@ html, body
         width: 100%;
     }
     body {
-        min-height: 80em;
+        /*min-height: 70em;*/
     }
     .mobile-nav {
 
@@ -370,6 +370,10 @@ html, body
         width: 150px;
         border-radius: 5px;
     }
+    .searchTerm {
+        font-size: 14px;
+    }
+
 }
 
 
