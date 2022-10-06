@@ -1,6 +1,10 @@
 .contact {
     font-family: 'Inter Tight', sans-serif;
     text-align: center;
+    font-size: 14px;
+}
+#contact-container {
+    padding-top: 50px;
 }
 /*#mode {*/
 /*    inline-size: 110px;*/
@@ -13,6 +17,14 @@
     margin-top: 3em;
     font-family: 'Inter Tight', sans-serif;
     color: grey;
+}
+
+#output-container{
+    margin-top: 10px;
+    background-color: rgb(250,250,250);
+    border-radius: 5px;
+    padding-top: 7px;
+    min-height: 250px;
 }
 .img {
     transform: translateY(20px) translateX(-120px);
@@ -59,9 +71,9 @@ nav ul li {
 }
 
 nav ul li a {
-    padding: 40px;
+    padding: 35px;
     /*font-family: 'Inter Tight', sans-serif;*/
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     text-transform:uppercase;
     /*color: black;*/
     /*color: white;*/

@@ -3,7 +3,7 @@
 document.querySelector('#contact').addEventListener('click', function () {
     setTitle('Flix');
     document.querySelector('#back-container').innerHTML = '';
-let contact = `<div>
+let contact = `<div id="contact-container">
     <div class="contact text-color" style="color: ${setTextColors()}"><h3>Thank you for visiting my site, please feel free to reach out to me if you have any questions.</h3></div>
     <div class="contact text-color" style="color: ${setTextColors()}"><h3>Email: oscar.a.castro818@gmail.com</h3></div>
     <div class="contact text-color" style="color: ${setTextColors()}"><h3>Github: https://github.com/oscar-ct</h3></div>
@@ -218,10 +218,12 @@ document.querySelector('#mode').addEventListener('click', function () {
     // }
     console.log(element);
     if (element.innerText === 'DARK MODE') {
+        document.querySelector('#output-container').style.backgroundColor = 'rgb(26,26,26)';
         body.style.backgroundColor = 'rgb(31, 30, 30)';
         setColor(textColorClass, 'white');
         element.innerText = 'LIGHT MODE';
     } else if (element.innerText === 'LIGHT MODE') {
+        document.querySelector('#output-container').style.backgroundColor = 'rgb(250,250,250)';
         body.style.backgroundColor = 'white';
         setColor(textColorClass, 'black');
         element.innerText = 'DARK MODE';
