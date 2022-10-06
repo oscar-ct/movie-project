@@ -211,7 +211,7 @@ html, body
 }
 
 .searchButton {
-    /*width: 40px;*/
+    width: 30px;
     height: 36px;
     border: 1px solid lightgrey;
     background: lightgrey;
@@ -358,7 +358,10 @@ html, body
         border-bottom: solid 1px grey;
     }
     .search {
-        width: 70%;
+        width: 85%;
+    }
+    .searchTerm {
+        text-align: start;
     }
     body {
         /*min-height: 70em;*/
