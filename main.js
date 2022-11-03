@@ -39,12 +39,20 @@ document.querySelector('.searchButton').addEventListener('click', function () {
 
 
 
-$(document).on('keypress',function(e) {
-    if(e.which === 13) {
-        const titleSearched = document.querySelector('.searchTerm').value;
-        getSearchTitle(titleSearched);
-    }
+// $(document).on('keypress',function(e) {
+//     if(e.which === 13) {
+//         const titleSearched = document.querySelector('.searchTerm').value;
+//         getSearchTitle(titleSearched);
+//     }
+// });
+
+document.addEventListener('keypress', function (e) {
+   if (e.key === 'Enter') {
+       const titleSearched = document.querySelector('.searchTerm').value;
+       getSearchTitle(titleSearched);
+   }
 });
+
 function getSearchTitle (search) {
     fetch("https://omdbapi.com/?apikey=" + [money(thisIsATest)] + "&s" + "=" + search, {
     }).then(resp => resp.json()).then(function (data) {
